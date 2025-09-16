@@ -1,6 +1,6 @@
-AI-Powered Email Organizer
+### AI-Powered Email Organizer
 
-This project is my solution to a problem I think we all face: a chaotic and overwhelming email inbox. I was tired of sifting through promotions and newsletters to find that one important email about a job application or a bank update.
+**This project is my solution to a problem I think we all face: a chaotic and overwhelming email inbox. I was tired of sifting through promotions and newsletters to find that one important email about a job application or a bank update.**
 
 So, I decided to build a small, smart assistant that lives in the cloud and sorts my emails for me, 24/7. This repository documents that journey.
 
@@ -50,6 +50,8 @@ I pieced this together with a few of my favorite modern tools:
 5.  **Import & Configure:** Import my `workflow.json` file into your n8n instance and plug in your own Google credentials.
 
 ---
+
+⚠️ This workflow does not include API keys or secrets. You will need to configure your own Gmail API / Google Gemini API credentials in your n8n instance to make it work.
 
 Thanks for checking out my project! Feel free to fork it, ask questions, or suggest improvements.
 
