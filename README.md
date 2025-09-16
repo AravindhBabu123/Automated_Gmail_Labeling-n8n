@@ -9,13 +9,13 @@ So, I decided to build a small, smart assistant that lives in the cloud and sort
 ### Preview
 
 ### 🔹 WorkFlow
-![WorkFlow](Automated_Gmail_Labeling-n8n/asset/Mail_automation_workflow.png)  
+![WorkFlow](asset/Mail_automation_workflow.png)  
 
 ### 🔹 Metrics
-![Metrics](Automated_Gmail_Labeling-n8n/asset/Render_metrics.png)  
+![Metrics](asset/Render_metrics.png)  
 
 ### 🔹 Output
-![Output](Automated_Gmail_Labeling-n8n/asset/Result.png)  
+![Output](asset/Result.png)  
 
 ---
 
