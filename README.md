@@ -14,9 +14,15 @@ So, I decided to build a small, smart assistant that lives in the cloud and sort
 ### 🔹 Metrics
 ![Metrics](asset/Render_metrics.png)  
 
-### 🔹 Output
-![Output](asset/Result.png)  
+### 🔹 Result
+**From this**
+![Clumsy](asset/clumsy.png)  
 
+**To This**
+![order](asset/order.png)  
+
+**Job Label**
+![job_label](asset/job_label.png)  
 ---
 
 ### So, What Does It *Actually* Do?
