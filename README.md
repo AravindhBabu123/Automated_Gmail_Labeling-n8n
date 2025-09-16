@@ -6,6 +6,11 @@ So, I decided to build a small, smart assistant that lives in the cloud and sort
 
 ---
 
+### Preview
+
+
+---
+
 ### So, What Does It *Actually* Do?
 
 Simple: It watches my Gmail inbox around the clock. The moment a new email lands, it springs into action:
