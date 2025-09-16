@@ -1,0 +1,358 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {},
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -448,
+        128
+      ],
+      "id": "7bcf80b7-f55c-4069-bf84-440e4431f0ad",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ABbzscQevhDAmD7q",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.text }}",
+        "categories": {
+          "categories": [
+            {
+              "category": " Bank",
+              "description": "all emails related to banks and financial institutions, including communications from DBS Bank (my primary bank) such as statements, OTPs, transaction alerts, security updates, and offers, as well as similar emails from any other bank or financial institution. It should also include transaction-related messages such as deposits, withdrawals, transfers, salary credits, refunds, remittances, loan or credit card updates, balance notifications, and interest rate information, while excluding unrelated marketing or generic mentions of the word “bank.”"
+            },
+            {
+              "category": "College",
+              "description": "all emails related to my college, Rajalakshmi Institute of Technology, including official communications from college domains or staff, announcements, circulars, class schedules, exam notifications, results, academic updates, department notices, administrative information, fee payment reminders, event or seminar invitations, and any other correspondence directly connected to the college, while excluding unrelated promotional or external content."
+            },
+            {
+              "category": "Internship",
+              "description": "all emails related to internships, including internship applications I have submitted, confirmations, interview invitations, recruiter or company communications, selection results, onboarding instructions, and internship offer letters, as well as internship opportunities, calls for applications, notifications from portals, and academic or industry internship programs. This should include any email mentioning internships, training opportunities, or related career-building experiences, while excluding unrelated promotional or non-internship job content."
+            },
+            {
+              "category": "Jobs",
+              "description": "all emails related to jobs and employment, including job applications I have submitted, confirmations, interview calls, recruiter communications, offer letters, onboarding instructions, internship opportunities, and status updates, as well as job alerts, vacancy notifications, career newsletters, and opportunities from job portals, companies, or recruiters. This should include any email mentioning applications, interviews, hiring processes, career opportunities, or job-related events, while excluding unrelated promotional content not tied to employment or recruitment."
+            },
+            {
+              "category": "Learning",
+              "description": "all emails related to online learning and education platforms, including communications from Coursera, Simplilearn, Eduprep, and similar providers. This covers course enrollments, learning progress updates, class schedules, assignment or quiz reminders, certificates, promotional offers from learning platforms, newsletters, and announcements of new courses or programs. Any email clearly tied to online courses, skill development, or educational content should be included here, while excluding unrelated marketing or non-learning-related material."
+            },
+            {
+              "category": "News",
+              "description": "all emails related to news, information, and content updates from platforms such as Quora, Reddit, and similar sources. This includes newsletters, digests, trending topics, community discussions, article recommendations, informational updates, and notifications about new content. Any email that primarily provides news, knowledge, insights, or general information should be included here, while excluding unrelated promotional or non-informational marketing emails."
+            },
+            {
+              "category": "Others",
+              "description": "all emails that do not belong to important categories such as Bank, College, Job, Internship, Learning, or News, and are generally unwanted, distracting, or low priority. This includes spam, promotional offers, advertisements, shopping discounts, marketing campaigns, newsletters not related to learning or jobs, social media promotions, and any other non-essential or distracting content. Any email that does not carry personal, academic, financial, or professional importance should be placed in this label."
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "Please classify the text provided by the user into one of the following categories: {categories}, and use the provided formatting instructions below. Don't explain, and only output the json."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1.1,
+      "position": [
+        -224,
+        48
+      ],
+      "id": "d94eca7d-8e0c-4df9-a9ed-d36edc5f525e",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-pro",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -224,
+        400
+      ],
+      "id": "73f22730-f755-40f9-9552-747f49caca26",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "iN7NZpuKrTrslPCi",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.id }}",
+        "labelIds": [
+          "Label_5558536947683556472"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        224,
+        -240
+      ],
+      "id": "94b23a28-ca74-41cf-8744-03f3921223bd",
+      "name": "Bank",
+      "webhookId": "ef94d39b-c32e-4a51-a4db-adfd26735ccb",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ABbzscQevhDAmD7q",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.id }}",
+        "labelIds": [
+          "Label_2007129780059655862"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        224,
+        -112
+      ],
+      "id": "6febfc2e-8d5c-4bb0-844c-180956b83cb2",
+      "name": "College",
+      "webhookId": "ef94d39b-c32e-4a51-a4db-adfd26735ccb",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ABbzscQevhDAmD7q",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.id }}",
+        "labelIds": [
+          "Label_4423798840551566744"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        224,
+        32
+      ],
+      "id": "80c95113-6c2e-4917-bce8-309b00fb0aeb",
+      "name": "Internship",
+      "webhookId": "ef94d39b-c32e-4a51-a4db-adfd26735ccb",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ABbzscQevhDAmD7q",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.id }}",
+        "labelIds": [
+          "Label_4339360800535741200"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        224,
+        176
+      ],
+      "id": "c3486c13-848e-4425-9f54-d9dac500e8b9",
+      "name": "Jobs",
+      "webhookId": "ef94d39b-c32e-4a51-a4db-adfd26735ccb",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ABbzscQevhDAmD7q",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.id }}",
+        "labelIds": [
+          "Label_4325949209637081380"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        224,
+        320
+      ],
+      "id": "2a263711-03c8-43ed-ae44-047663da4669",
+      "name": "Learning",
+      "webhookId": "ef94d39b-c32e-4a51-a4db-adfd26735ccb",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ABbzscQevhDAmD7q",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.id }}",
+        "labelIds": [
+          "Label_5101375222281030175"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        224,
+        464
+      ],
+      "id": "b6ed80bb-64ea-4389-b0e3-42fc7e21dde0",
+      "name": "News",
+      "webhookId": "ef94d39b-c32e-4a51-a4db-adfd26735ccb",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ABbzscQevhDAmD7q",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.id }}",
+        "labelIds": [
+          "Label_102016848483476341"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        224,
+        608
+      ],
+      "id": "dd4cf9b3-40b7-4f8b-bbf2-da198e75b704",
+      "name": "Others",
+      "webhookId": "ef94d39b-c32e-4a51-a4db-adfd26735ccb",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ABbzscQevhDAmD7q",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Classifier": {
+      "main": [
+        [
+          {
+            "node": "Bank",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "College",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Internship",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Jobs",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Learning",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "News",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Others",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "94b0e1ba-9dd3-4fc9-a27b-377ea713966a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7a9795ca7ad9392bb77634624444f7a619f2a78da93e04c42856eb1ff226121e"
+  },
+  "id": "tSe9HM8C4ZiwPNx0",
+  "tags": []
+}
