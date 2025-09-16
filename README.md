@@ -15,13 +15,13 @@ So, I decided to build a small, smart assistant that lives in the cloud and sort
 ![Metrics](asset/Render_metrics.png)  
 
 ### 🔹 Result
-**From this**
+### From this
 ![Clumsy](asset/clumsy.png)  
 
-**To This**
+### To This
 ![order](asset/order.png)  
 
-**Job Label**
+### Job_Label
 ![job_label](asset/job_label.png)  
 ---
 
